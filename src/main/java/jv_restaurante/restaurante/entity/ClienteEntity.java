@@ -38,7 +38,7 @@ public class ClienteEntity extends Pessoa {
 	private BigDecimal quantidadeValorGasto;
 	
 	@Column(name = "flg_bloqueado")
-	private boolean bloqueado;
+	private Boolean bloqueado;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinColumn(name = "restaurante_id", nullable = false)

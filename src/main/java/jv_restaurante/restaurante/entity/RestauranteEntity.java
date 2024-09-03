@@ -42,7 +42,11 @@ public class RestauranteEntity {
 	
 	@OneToMany(mappedBy = "restaurante", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
 	private List<FuncionarioEntity> funcionarios;
+	
+	@OneToMany(mappedBy = "restaurante", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
 	private List<ClienteEntity> clientes;
+	
+	@OneToMany(mappedBy = "restaurante", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
 	private List<MesaEntity> mesas;
 
 }

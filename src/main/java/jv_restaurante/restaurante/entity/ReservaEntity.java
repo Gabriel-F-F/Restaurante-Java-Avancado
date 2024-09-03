@@ -6,6 +6,8 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -40,10 +42,14 @@ public class ReservaEntity {
 	private LocalDate dataReserva;
 	
 	@Column(name = "quantidade_pessoas", nullable = false)
-	private Integer quantidadePessoas;
+	private Long quantidadePessoas;
 	
 	@Column(name = "status", nullable = false)
+	@Enumerated(EnumType.ORDINAL)
 	private StatusEnum status;
+	
+	@Column(name = "observacao", nullable = false)
+	private String observacao;
 	
 	@OneToMany(mappedBy = "reserva", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
 	private List<PedidoEntity> pedidos;

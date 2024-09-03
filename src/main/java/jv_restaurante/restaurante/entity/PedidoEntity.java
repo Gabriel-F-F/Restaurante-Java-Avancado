@@ -30,7 +30,7 @@ public class PedidoEntity {
 	private ReservaEntity reserva;
 	
 	@Column(name = "nome_prato", nullable = false)
-	private String nomePrato;
+	private String descricao;
 	
 	@Column(name = "valor", nullable = false)
 	private BigDecimal valor;

@@ -27,10 +27,10 @@ public class MesaEntity {
 	private Long id;
 	
 	@Column(name = "numero", nullable = false)
-	private Integer numero;
+	private Long numero;
 	
 	@Column(name = "capacidade_pessoas", nullable = false)
-	private Integer capacidadePessoas;
+	private Long capacidadePessoas;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinColumn(name = "restaurante_id", nullable = false)

@@ -1,17 +1,16 @@
 package jv_restaurante.restaurante.entity;
 
 import java.time.LocalDate;
-
 import jakarta.persistence.MappedSuperclass;
 import jv_restaurante.restaurante.enuns.SexoEnum;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
-@Data
+@Getter
 public abstract class Pessoa {
 	private String nome;
 	private String cpf;
