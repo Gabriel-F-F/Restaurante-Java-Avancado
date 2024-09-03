@@ -27,22 +27,22 @@ public class RestauranteEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(nullable = false)
+	@Column(name = "nome", nullable = false)
 	private String nome;
 	
-	@Column(nullable = false, unique = true)
+	@Column(name = "cpnj", nullable = false, unique = true)
 	private String cpnj;
 	
-	@Column(nullable = false)
+	@Column(name = "estrelas", nullable = false)
 	private Long estrelas;
 	
-	@Column(nullable = false)
+	@Column(name = "tipo_comida", nullable = false)
 	@Enumerated(EnumType.ORDINAL)
 	private TipoComidaEnum tipoComida;
 	
 	@OneToMany(mappedBy = "restaurante", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-	List<FuncionarioEntity> funcionarios;
-	List<ClienteEntity> clientes;
-	List<MesaEntity> mesas;
+	private List<FuncionarioEntity> funcionarios;
+	private List<ClienteEntity> clientes;
+	private List<MesaEntity> mesas;
 
 }
