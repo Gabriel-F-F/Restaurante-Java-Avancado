@@ -16,7 +16,7 @@ public class ReservaDto {
 	private Long idCliente;
 	private Long idMesa;
 	private LocalDate dataReserva;
-	private Long quantidadePessoas;
+	private Integer quantidadePessoas;
 	private StatusEnum status;
 	private String observacao;
 	

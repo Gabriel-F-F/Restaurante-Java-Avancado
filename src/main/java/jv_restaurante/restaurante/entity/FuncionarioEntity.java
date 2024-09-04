@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jv_restaurante.restaurante.dto.FuncionarioDto;
 import jv_restaurante.restaurante.enuns.CargoFuncionarioEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,9 +40,25 @@ public class FuncionarioEntity extends Pessoa {
 	private BigDecimal salario;
 	
 	@Column(name = "carga_horaria", nullable = false)
-	private Long cargaHoraria;
+	private Integer cargaHoraria;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinColumn(name = "restaurante_id", nullable = false)
 	private RestauranteEntity restaurante;
+	
+	public FuncionarioEntity(FuncionarioDto dto, RestauranteEntity restauranteEntity) {
+		this.id = dto.getId();
+		this.cargo = dto.getCargo();
+		this.dataAdmissao = dto.getDataAdmissao();
+		this.salario = dto.getSalario();
+		this.cargaHoraria = dto.getCargaHoraria();
+		this.restaurante = restauranteEntity;
+		
+		this.nome = dto.getNome();
+		this.cpf = dto.getCpf();
+		this.sobrenome = dto.getSobrenome();
+		this.dataNascimento = dto.getDataNascimento();
+		this.sexo = dto.getSexo();
+		this.telefone = dto.getTelefone();
+	}
 }

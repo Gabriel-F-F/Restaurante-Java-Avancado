@@ -6,4 +6,5 @@ import jv_restaurante.restaurante.entity.RestauranteEntity;
 
 public interface RestauranteRepository extends JpaRepository<RestauranteEntity, Long> {
 
+	RestauranteEntity findRestauranteById(Long id);
 }

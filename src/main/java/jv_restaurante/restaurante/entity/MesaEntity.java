@@ -12,13 +12,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jv_restaurante.restaurante.dto.MesaDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "mesas")
+@Entity(name = "mesa")
 @Getter
 public class MesaEntity {
 	
@@ -27,10 +28,10 @@ public class MesaEntity {
 	private Long id;
 	
 	@Column(name = "numero", nullable = false)
-	private Long numero;
+	private Integer numero;
 	
 	@Column(name = "capacidade_pessoas", nullable = false)
-	private Long capacidadePessoas;
+	private Integer capacidadePessoas;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinColumn(name = "restaurante_id", nullable = false)
@@ -38,4 +39,11 @@ public class MesaEntity {
 	
 	@OneToMany(mappedBy = "mesa", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
 	private List<ReservaEntity> reservas;
+	
+	public MesaEntity(MesaDto dto, RestauranteEntity restauranteEntity) {
+		this.id = dto.getId();
+		this.numero = dto.getNumero();
+		this.capacidadePessoas = dto.getCapacidadePessoas();
+		this.restaurante = restauranteEntity;
+	}
 }

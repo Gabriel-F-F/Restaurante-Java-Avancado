@@ -12,14 +12,14 @@ import lombok.NoArgsConstructor;
 public class RestauranteDto {
 	private Long id;
 	private String nome;
-	private String cpnj;
+	private String cnpj;
 	private Long estrelas;
 	private TipoComidaEnum tipoComida;
 	
 	public RestauranteDto(RestauranteEntity entity) {
 		this.id = entity.getId();
 		this.nome = entity.getNome();
-		this.cpnj = entity.getCpnj();
+		this.cnpj = entity.getCnpj();
 		this.estrelas = entity.getEstrelas();
 		this.tipoComida = entity.getTipoComida();
 	}

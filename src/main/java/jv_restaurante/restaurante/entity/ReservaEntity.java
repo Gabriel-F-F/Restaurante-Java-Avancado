@@ -42,7 +42,7 @@ public class ReservaEntity {
 	private LocalDate dataReserva;
 	
 	@Column(name = "quantidade_pessoas", nullable = false)
-	private Long quantidadePessoas;
+	private Integer quantidadePessoas;
 	
 	@Column(name = "status", nullable = false)
 	@Enumerated(EnumType.ORDINAL)

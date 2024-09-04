@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jv_restaurante.restaurante.dto.ClienteDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,7 +33,7 @@ public class ClienteEntity extends Pessoa {
 	private LocalDate dataCadastro;
 	
 	@Column(name = "quantidade_reservas", nullable = false)
-	private Long quantidadeReservas;
+	private Integer quantidadeReservas;
 	
 	@Column(name = "quantidade_valor_gasto", nullable = false)
 	private BigDecimal quantidadeValorGasto;
@@ -46,5 +47,20 @@ public class ClienteEntity extends Pessoa {
 	
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
 	private List<ReservaEntity> reservas;
-	
+
+	public ClienteEntity(ClienteDto dto, RestauranteEntity restauranteEntity) {
+		this.id = dto.getId();
+		this.dataCadastro = dto.getDataCadastro();
+//		this.quantidadeReservas
+//		this.quantidadeValorGasto
+		this.bloqueado = false;
+		this.restaurante = restauranteEntity;
+		
+		this.nome = dto.getNome();
+		this.cpf = dto.getCpf();
+		this.sobrenome = dto.getSobrenome();
+		this.dataNascimento = dto.getDataNascimento();
+		this.sexo = dto.getSexo();
+		this.telefone = dto.getTelefone();
+	}
 }

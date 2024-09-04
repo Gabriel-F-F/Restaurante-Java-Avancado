@@ -17,7 +17,8 @@ public class FuncionarioDto {
 	private CargoFuncionarioEnum cargo;
 	private LocalDate dataAdmissao;
 	private BigDecimal salario;
-	private Long cargaHoraria;
+	private Integer cargaHoraria;
+	private Long idRestaurante;
 	
 	private String nome;
 	private String cpf;
@@ -32,6 +33,7 @@ public class FuncionarioDto {
 		this.dataAdmissao = entity.getDataAdmissao();
 		this.salario = entity.getSalario();
 		this.cargaHoraria = entity.getCargaHoraria();
+		this.idRestaurante = entity.getRestaurante().getId();
 		
 		this.nome = entity.getNome();
 		this.cpf = entity.getCpf();

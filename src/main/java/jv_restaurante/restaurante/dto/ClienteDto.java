@@ -15,9 +15,10 @@ import lombok.NoArgsConstructor;
 public class ClienteDto {
 	private Long id;
 	private LocalDate dataCadastro;
-	private Long quantidadeReservas;
+	private Integer quantidadeReservas;
 	private BigDecimal quantidadeValorGasto;
 	private Boolean bloqueado;
+	private Long idRestaurante;
 	
 	private String nome;
 	private String cpf;
@@ -32,6 +33,7 @@ public class ClienteDto {
 		this.quantidadeReservas = entity.getQuantidadeReservas();
 		this.quantidadeValorGasto = entity.getQuantidadeValorGasto();
 		this.bloqueado = entity.getBloqueado();
+		this.idRestaurante = entity.getRestaurante().getId();
 		
 		this.nome = entity.getNome();
 		this.cpf = entity.getCpf();

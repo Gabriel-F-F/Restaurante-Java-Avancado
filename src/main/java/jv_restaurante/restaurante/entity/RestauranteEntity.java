@@ -32,7 +32,7 @@ public class RestauranteEntity {
 	private String nome;
 	
 	@Column(name = "cpnj", nullable = false, unique = true)
-	private String cpnj;
+	private String cnpj;
 	
 	@Column(name = "estrelas", nullable = false)
 	private Long estrelas;
@@ -53,8 +53,16 @@ public class RestauranteEntity {
 	public RestauranteEntity(RestauranteDto dto) {
 		this.id = dto.getId();
 		this.nome = dto.getNome();
-		this.cpnj = dto.getCpnj();
+		this.cnpj = dto.getCnpj();
 		this.estrelas = dto.getEstrelas();
 		this.tipoComida = dto.getTipoComida();
+	}
+	
+	public RestauranteEntity putRestaurante(RestauranteDto dto) {
+		this.nome = dto.getNome();
+		this.cnpj = dto.getCnpj();
+		this.estrelas = dto.getEstrelas();
+		this.tipoComida = dto.getTipoComida();
+		return this;
 	}
 }

@@ -8,14 +8,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class MesasDto {
+public class MesaDto {
 	private Long id;
-	private Long numero;
-	private Long capacidadePessoas;
+	private Integer numero;
+	private Integer capacidadePessoas;
+	private Long idRestaurante;
 	
-	public MesasDto(MesaEntity entity) {
+	public MesaDto(MesaEntity entity) {
 		this.id = entity.getId();
 		this.numero = entity.getNumero();
 		this.capacidadePessoas = entity.getCapacidadePessoas();
+		this.idRestaurante = entity.getRestaurante().getId();
 	}
 }
