@@ -1,5 +1,8 @@
 package jv_restaurante.restaurante.service.impl;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +23,29 @@ public class FuncionarioServiceImp implements FuncionarioService {
 	private RestauranteRepository restauranteRepository;
 	
 	@Override
+	public List<FuncionarioDto> getFuncionarioPorRestaurante(Long idRestaurante) {
+		List<FuncionarioEntity> listaFuncionarios = funcionarioRepository.findAll();
+		List<FuncionarioEntity> funcionariosEncontrados = listaFuncionarios
+														.stream()
+														.filter(funcionario -> funcionario.getRestaurante().getId().equals(idRestaurante))
+														.toList();
+		return funcionariosEncontrados.stream().map(FuncionarioDto::new).toList();
+	}
+	
+	@Override
 	public FuncionarioDto postFuncionario(Long idRestaurante, FuncionarioDto funcionarioDto) {
 		RestauranteEntity restauranteEntity = restauranteRepository.findRestauranteById(idRestaurante);
 		FuncionarioEntity funcionarioAdicionado = funcionarioRepository.save(new FuncionarioEntity(funcionarioDto, restauranteEntity));
 		return new FuncionarioDto(funcionarioAdicionado);
+	}
+	
+	@Override
+	public void putFuncionario(Long idFuncionario, FuncionarioDto funcionarioDto) {
+		Optional<FuncionarioEntity> funcionarioEncontrado = funcionarioRepository.findById(idFuncionario);
+		if(funcionarioEncontrado.isPresent()) {
+			FuncionarioEntity funcionarioEntity = funcionarioEncontrado.get();
+			funcionarioEntity.putFuncionario(funcionarioDto);
+			funcionarioRepository.save(funcionarioEntity);
+		}
 	}
 }

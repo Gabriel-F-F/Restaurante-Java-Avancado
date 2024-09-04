@@ -6,7 +6,7 @@ import jv_restaurante.restaurante.dto.RestauranteDto;
 
 public interface RestauranteService {
 	
-	List<RestauranteDto> getRestaurante(RestauranteDto restauranteDto);
+	List<RestauranteDto> getRestaurante();
 	
 	RestauranteDto postRestaurante(RestauranteDto restauranteDto);
 	

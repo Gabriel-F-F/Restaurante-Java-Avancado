@@ -61,4 +61,19 @@ public class FuncionarioEntity extends Pessoa {
 		this.sexo = dto.getSexo();
 		this.telefone = dto.getTelefone();
 	}
+	
+	public FuncionarioEntity putFuncionario(FuncionarioDto dto) {
+		this.cargo = dto.getCargo();
+		this.dataAdmissao = dto.getDataAdmissao();
+		this.salario = dto.getSalario();
+		this.cargaHoraria = dto.getCargaHoraria();
+		
+		this.nome = dto.getNome();
+		this.cpf = dto.getCpf();
+		this.sobrenome = dto.getSobrenome();
+		this.dataNascimento = dto.getDataNascimento();
+		this.sexo = dto.getSexo();
+		this.telefone = dto.getTelefone();
+		return this;
+	}
 }

@@ -46,4 +46,10 @@ public class MesaEntity {
 		this.capacidadePessoas = dto.getCapacidadePessoas();
 		this.restaurante = restauranteEntity;
 	}
+	
+	public MesaEntity putMesa(MesaDto dto) {
+		this.numero = dto.getNumero();
+		this.capacidadePessoas = dto.getCapacidadePessoas();
+		return this;
+	}
 }

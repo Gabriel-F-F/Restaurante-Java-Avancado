@@ -21,17 +21,17 @@ public class RestauranteController {
 	@Autowired
 	private RestauranteService restauranteService;
 	
-	@GetMapping
-	public List<RestauranteDto> getRestaurante(RestauranteDto restauranteDto) {
-		return restauranteService.getRestaurante(restauranteDto);
+	@GetMapping("/buscar")
+	public List<RestauranteDto> getRestaurante() {
+		return restauranteService.getRestaurante();
 	}
 	
-	@PostMapping
+	@PostMapping("/adicionar")
 	public void postRestaurante(@RequestBody RestauranteDto restauranteDto) {
 		restauranteService.postRestaurante(restauranteDto);
 	}
 	
-	@PutMapping("/{idRestaurante}")
+	@PutMapping("/atualizar/{idRestaurante}")
 	public void putRestaurante(@PathVariable Long idRestaurante, @RequestBody RestauranteDto restauranteDto) {
 		restauranteService.putRestaurante(idRestaurante, restauranteDto);
 	}

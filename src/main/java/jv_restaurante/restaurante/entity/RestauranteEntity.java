@@ -31,7 +31,7 @@ public class RestauranteEntity {
 	@Column(name = "nome", nullable = false)
 	private String nome;
 	
-	@Column(name = "cpnj", nullable = false, unique = true)
+	@Column(name = "cnpj", nullable = false, unique = true)
 	private String cnpj;
 	
 	@Column(name = "estrelas", nullable = false)

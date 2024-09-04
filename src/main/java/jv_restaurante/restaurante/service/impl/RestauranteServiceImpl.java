@@ -17,7 +17,7 @@ public class RestauranteServiceImpl implements RestauranteService {
 	private RestauranteRepository restauranteRepository;
 	
 	@Override
-	public List<RestauranteDto> getRestaurante(RestauranteDto restauranteDto) {
+	public List<RestauranteDto> getRestaurante() {
 		List<RestauranteEntity> listaRestaurantes = restauranteRepository.findAll();
 		return listaRestaurantes.stream().map(RestauranteDto::new).toList();
 	}
