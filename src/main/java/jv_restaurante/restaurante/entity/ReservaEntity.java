@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jv_restaurante.restaurante.dto.ReservaDto;
 import jv_restaurante.restaurante.enuns.StatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -53,4 +54,22 @@ public class ReservaEntity {
 	
 	@OneToMany(mappedBy = "reserva", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
 	private List<PedidoEntity> pedidos;
+	
+	public ReservaEntity(ReservaDto dto, ClienteEntity clienteEntity, MesaEntity mesaEntity) {
+		this.id = dto.getId();
+		this.cliente = clienteEntity;
+		this.mesa = mesaEntity;
+		this.dataReserva = dto.getDataReserva();
+		this.quantidadePessoas = dto.getQuantidadePessoas();
+		this.status = dto.getStatus();
+		this.observacao = dto.getObservacao();
+	}
+	
+	public ReservaEntity putReserva(ReservaDto dto) {
+		this.dataReserva = dto.getDataReserva();
+		this.quantidadePessoas = dto.getQuantidadePessoas();
+		this.status = dto.getStatus();
+		this.observacao = dto.getObservacao();
+		return this;
+	}
 }

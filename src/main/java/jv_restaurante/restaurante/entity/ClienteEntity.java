@@ -51,8 +51,8 @@ public class ClienteEntity extends Pessoa {
 	public ClienteEntity(ClienteDto dto, RestauranteEntity restauranteEntity) {
 		this.id = dto.getId();
 		this.dataCadastro = dto.getDataCadastro();
-//		this.quantidadeReservas
-//		this.quantidadeValorGasto
+		this.quantidadeReservas = dto.getQuantidadeReservas();
+		this.quantidadeValorGasto = dto.getQuantidadeValorGasto();
 		this.bloqueado = false;
 		this.restaurante = restauranteEntity;
 		
@@ -62,5 +62,20 @@ public class ClienteEntity extends Pessoa {
 		this.dataNascimento = dto.getDataNascimento();
 		this.sexo = dto.getSexo();
 		this.telefone = dto.getTelefone();
+	}
+	
+	public ClienteEntity putCliente(ClienteDto dto) {
+		this.dataCadastro = dto.getDataCadastro();
+		this.quantidadeReservas = dto.getQuantidadeReservas();
+		this.quantidadeValorGasto = dto.getQuantidadeValorGasto();
+		this.bloqueado = false;
+		
+		this.nome = dto.getNome();
+		this.cpf = dto.getCpf();
+		this.sobrenome = dto.getSobrenome();
+		this.dataNascimento = dto.getDataNascimento();
+		this.sexo = dto.getSexo();
+		this.telefone = dto.getTelefone();
+		return this;
 	}
 }
