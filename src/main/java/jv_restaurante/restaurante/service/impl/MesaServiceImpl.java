@@ -25,6 +25,12 @@ public class MesaServiceImpl implements MesaService {
 		List<MesaEntity> listaMesa = mesaRepository.findAll();
 		List<MesaEntity> mesasEncontradas = listaMesa.stream().filter(mesa -> mesa.getRestaurante().getId().equals(idRestaurante)).toList();
 		return mesasEncontradas.stream().map(MesaDto::new).toList();
+		}
+	
+	@Override 
+	public List<MesaDto> getMesaPorCapacidade(Long idRestaurante, Integer capacidadePessoas) {
+		List<MesaEntity> listaMesas = mesaRepository.getMesasPorCapacidadePessoa(idRestaurante, capacidadePessoas);
+		return listaMesas.stream().map(MesaDto::new).toList();
 	}
 	
 	@Override

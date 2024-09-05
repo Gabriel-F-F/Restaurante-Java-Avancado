@@ -17,11 +17,16 @@ import jv_restaurante.restaurante.service.MesaService;
 public class MesaController {
 
 	@Autowired
-	private MesaService mesaService; 
+	private MesaService mesaService;
 	
 	@GetMapping("/buscar/{idRestaurante}")
 	public List<MesaDto> getMesaPorRestaurante(@PathVariable Long idRestaurante) {
 		return mesaService.getMesaPorRestaurante(idRestaurante);
+	}
+	
+	@GetMapping("/buscar-por-capacidade/{idRestaurante}/{capacidadePessoas}")
+	public List<MesaDto> ge(@PathVariable Long idRestaurante, @PathVariable Integer capacidadePessoas) {
+		return mesaService.getMesaPorCapacidade(idRestaurante, capacidadePessoas);
 	}
 	
 	@PostMapping("/adicionar/{idRestaurante}")

@@ -7,6 +7,8 @@ public interface MesaService {
 
 	List<MesaDto> getMesaPorRestaurante(Long idRestaurante);
 	
+	List<MesaDto> getMesaPorCapacidade(Long idRestaurante, Integer capacidadePessoas);
+	
 	MesaDto postMesa(Long idRestaurante, MesaDto mesaDto);
 	
 	void putMesa(Long idMesa, MesaDto mesaDto);
