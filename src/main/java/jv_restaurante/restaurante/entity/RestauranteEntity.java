@@ -53,7 +53,7 @@ public class RestauranteEntity {
 	public RestauranteEntity(RestauranteDto dto) {
 		this.id = dto.getId();
 		this.nome = dto.getNome();
-		this.cnpj = dto.getCnpj();
+		this.cnpj = dto.getCnpj().replaceAll("[\\.\\-/]", "");
 		this.estrelas = dto.getEstrelas();
 		this.tipoComida = dto.getTipoComida();
 	}

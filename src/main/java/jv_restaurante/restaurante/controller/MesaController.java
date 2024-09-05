@@ -1,5 +1,6 @@
 package jv_restaurante.restaurante.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +25,9 @@ public class MesaController {
 		return mesaService.getMesaPorRestaurante(idRestaurante);
 	}
 	
-	@GetMapping("/buscar-por-capacidade/{idRestaurante}/{capacidadePessoas}")
-	public List<MesaDto> ge(@PathVariable Long idRestaurante, @PathVariable Integer capacidadePessoas) {
-		return mesaService.getMesaPorCapacidade(idRestaurante, capacidadePessoas);
+	@GetMapping("/buscar-por-capacidade/{idRestaurante}/{capacidadePessoas}/{data}")
+	public List<MesaDto> ge(@PathVariable Long idRestaurante, @PathVariable Integer capacidadePessoas, @PathVariable LocalDate data) {
+		return mesaService.getMesaPorCapacidade(idRestaurante, capacidadePessoas, data);
 	}
 	
 	@PostMapping("/adicionar/{idRestaurante}")

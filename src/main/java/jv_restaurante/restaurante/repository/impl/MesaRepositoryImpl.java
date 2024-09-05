@@ -1,5 +1,6 @@
 package jv_restaurante.restaurante.repository.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import com.querydsl.jpa.impl.JPAQuery;
 import jakarta.persistence.EntityManager;
@@ -19,13 +20,17 @@ public class MesaRepositoryImpl implements MesaRepositoryCustom {
 	final QReservaEntity reserva = QReservaEntity.reservaEntity;
 	final QMesaEntity mesa = QMesaEntity.mesaEntity;
 	
-	public List<MesaEntity> getMesasPorCapacidadePessoa(Long restauranteId, Integer capacidadePessoas) {
+	public List<MesaEntity> getMesasPorCapacidadePessoa(Long restauranteId, Integer capacidadePessoas, LocalDate data) {
 		var query = new JPAQuery<MesaEntity>(em);
 		
-		query.select(mesa).distinct()
-			.from(restaurante).join(restaurante.mesas, mesa)
+		query.select(mesa)
+			.distinct()
+			.from(restaurante)
+			.innerJoin(restaurante.mesas, mesa)
+			.innerJoin(reserva.mesa, mesa)
 			.where(restaurante.id.eq(restauranteId)
-			.and(mesa.capacidadePessoas.eq(capacidadePessoas)));
+			.and(mesa.capacidadePessoas.eq(capacidadePessoas) //terminou aq
+			.and(reserva.dataReserva.eq(data))));
 		
 		return query.fetch();
 	}

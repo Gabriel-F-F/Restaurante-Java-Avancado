@@ -1,5 +1,6 @@
 package jv_restaurante.restaurante.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,8 @@ public class MesaServiceImpl implements MesaService {
 		}
 	
 	@Override 
-	public List<MesaDto> getMesaPorCapacidade(Long idRestaurante, Integer capacidadePessoas) {
-		List<MesaEntity> listaMesas = mesaRepository.getMesasPorCapacidadePessoa(idRestaurante, capacidadePessoas);
+	public List<MesaDto> getMesaPorCapacidade(Long idRestaurante, Integer capacidadePessoas, LocalDate data) {
+		List<MesaEntity> listaMesas = mesaRepository.getMesasPorCapacidadePessoa(idRestaurante, capacidadePessoas, data);
 		return listaMesas.stream().map(MesaDto::new).toList();
 	}
 	

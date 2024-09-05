@@ -11,6 +11,7 @@ import jv_restaurante.restaurante.dto.ReservaDto;
 import jv_restaurante.restaurante.entity.ClienteEntity;
 import jv_restaurante.restaurante.entity.MesaEntity;
 import jv_restaurante.restaurante.entity.ReservaEntity;
+import jv_restaurante.restaurante.enuns.StatusEnum;
 import jv_restaurante.restaurante.repository.ClienteRepository;
 import jv_restaurante.restaurante.repository.MesaRepository;
 import jv_restaurante.restaurante.repository.ReservaRepository;
@@ -31,6 +32,18 @@ public class ReservaServiceImpl implements ReservaService {
 	public void validaDataReserva(LocalDate dataReserva) {
 		if(dataReserva.isBefore(LocalDate.now())) {
 			throw new DateTimeException("Data de Reserva Inválida!");
+		}
+	}
+	
+	public void validaCancelamento(ReservaDto dto, LocalDate dataCancelamento) {
+		if (dto.getStatus().equals(StatusEnum.CANCELADA) && !dataCancelamento.isBefore(dto.getDataReserva())) {
+			throw new DateTimeException("Data de Cancelamento Inválida!");
+		}
+	}
+	
+	public void validaConcluido(ReservaDto dto, LocalDate dataConcluido) {
+		if (dto.getStatus().equals(StatusEnum.CONCLUIDA) && (dataConcluido.isAfter(LocalDate.now()))) {
+			throw new DateTimeException("Data de Conclusão Inválida!");
 		}
 	}
 	
@@ -59,6 +72,8 @@ public class ReservaServiceImpl implements ReservaService {
 		Optional<ReservaEntity> reservaEncontrada = reservaRepository.findById(idReserva);
 		if (reservaEncontrada.isPresent()) {
 			ReservaEntity reservaEntity = reservaEncontrada.get();
+			validaCancelamento(reservaDto, reservaEntity.getDataReserva());
+			validaConcluido(reservaDto, reservaEntity.getDataReserva());
 			reservaEntity.putStatusReserva(reservaDto);
 			reservaRepository.save(reservaEntity);
 		}
