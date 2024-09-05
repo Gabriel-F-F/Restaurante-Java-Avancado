@@ -27,10 +27,11 @@ public class MesaRepositoryImpl implements MesaRepositoryCustom {
 			.distinct()
 			.from(restaurante)
 			.innerJoin(restaurante.mesas, mesa)
-			.innerJoin(reserva.mesa, mesa)
+			.innerJoin(mesa.reservas, reserva)
 			.where(restaurante.id.eq(restauranteId)
 			.and(mesa.capacidadePessoas.eq(capacidadePessoas) //terminou aq
-			.and(reserva.dataReserva.eq(data))));
+			.and(reserva.dataReserva.eq(data))
+			.and(reserva.status.eq())));
 		
 		return query.fetch();
 	}
