@@ -68,8 +68,12 @@ public class ReservaEntity {
 	public ReservaEntity putReserva(ReservaDto dto) {
 		this.dataReserva = dto.getDataReserva();
 		this.quantidadePessoas = dto.getQuantidadePessoas();
-		this.status = dto.getStatus();
 		this.observacao = dto.getObservacao();
+		return this;
+	}
+	
+	public ReservaEntity putStatusReserva(ReservaDto dto) {
+		this.status = dto.getStatus();
 		return this;
 	}
 }

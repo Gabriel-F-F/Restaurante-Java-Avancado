@@ -33,10 +33,10 @@ public class ClienteEntity extends Pessoa {
 	private LocalDate dataCadastro;
 	
 	@Column(name = "quantidade_reservas", nullable = false)
-	private Integer quantidadeReservas;
+	private Integer quantidadeReservas = 0;
 	
 	@Column(name = "quantidade_valor_gasto", nullable = false)
-	private BigDecimal quantidadeValorGasto;
+	private BigDecimal quantidadeValorGasto = BigDecimal.ZERO;
 	
 	@Column(name = "flg_bloqueado")
 	private Boolean bloqueado;

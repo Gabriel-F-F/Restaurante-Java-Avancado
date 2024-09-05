@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jv_restaurante.restaurante.dto.PedidoDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,4 +35,17 @@ public class PedidoEntity {
 	
 	@Column(name = "valor", nullable = false)
 	private BigDecimal valor;
+	
+	public PedidoEntity(PedidoDto dto, ReservaEntity reservaEntity) {
+		this.id = dto.getId();
+		this.reserva = reservaEntity;
+		this.descricao = dto.getDescricao();
+		this.valor = dto.getValor();
+	}
+	
+	public PedidoEntity putPedido(PedidoDto dto) {
+		this.descricao = dto.getDescricao();
+		this.valor = dto.getValor();
+		return this;
+	}
 }

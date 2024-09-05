@@ -5,4 +5,5 @@ import jv_restaurante.restaurante.entity.ClienteEntity;
 
 public interface ClienteRepository extends JpaRepository<ClienteEntity, Long> {
 	
+	ClienteEntity findClienteById(Long idCliente);
 }
